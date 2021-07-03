@@ -26,7 +26,7 @@ try {
   await collection.insertMany(students);
   
   res.end("request ended");
-
+  
 } catch (e) {
   console.log(e);
   res.end("could not update");

@@ -7,14 +7,16 @@ const url = "mongodb://localhost:27017";
 const dbName = "wineTasting";
 const client = new MongoClient(url, { useNewUrlParser: true });
 
+const wines = JSON.parse(fs.readFileSync('wines.json', 'utf-8'));
+
+client.connect();
+
 server.on("request", async (req, res) => {
   const { url, headers } = req;
 
 try {
   
-  const wines = JSON.parse(fs.readFileSync('wines.json', 'utf-8'));
-
-  await client.connect();
+  
   const db = client.db(dbName);
   const collection = db.collection("tastes");
   await collection.insertMany(wines);

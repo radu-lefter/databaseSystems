@@ -1,0 +1,11 @@
+body{
+    background-color: rgb(231, 229, 229);
+}
+h1, h3{
+    text-align: center;
+}
+footer{
+    background-color: rgb(153, 63, 63);
+    margin-top: 20px;
+    height: 100px;
+ }
