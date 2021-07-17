@@ -11,15 +11,20 @@ const wines = JSON.parse(fs.readFileSync('wines.json', 'utf-8'));
 
 client.connect();
 
-server.on("request", async (req, res) => {
+server.on("request",  (req, res) => {
   const { url, headers } = req;
 
 try {
-  
+  //const start = Date.now();
   
   const db = client.db(dbName);
   const collection = db.collection("tastes");
-  await collection.insertMany(wines);
+  collection.insertMany(wines);
+  const count = collection.find().count();
+  //console.log(`${count} records were added in ${(Date.now - start) /1000 } seconds`)
+
+  console.log("number of records inserted: "+ count);
+
   res.end("request ended");
 } catch (e) {
   console.log(e);
